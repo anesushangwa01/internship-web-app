@@ -1,8 +1,6 @@
-// userRoutes.js
 const express = require('express');
 const router = express.Router();
-const JobApplicationModel = require('../models/jobApplication');
-
+const register = require('../models/register');
 
 // POST a new information
 router.post("/", async (req, res) => {
@@ -16,15 +14,4 @@ router.post("/", async (req, res) => {
     }
   });
 
-
-  router.get("/", async (req, res) => {
-    try {
-        const application = await JobApplicationModel.find({});
-        res.status(200).send(application);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-  
-
-module.exports = router;
+  export.module

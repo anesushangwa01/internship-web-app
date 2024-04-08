@@ -1,13 +1,11 @@
-
 const express = require('express');
 const router = express.Router();
-const JobApplicationModel = require('../models/jobApplication');
-
+const JoblistModel = require('../models/addjobs');
 
 // POST a new information
 router.post("/", async (req, res) => {
     try {
-      const application = new  JobApplicationModel(req.body); // Assuming req.body contains the product data
+      const application = new  JoblistModel(req.body); // Assuming req.body contains the product data
       await application.save();
       
       res.status(201).json({ message: 'applicaation submited ',  });
@@ -19,7 +17,7 @@ router.post("/", async (req, res) => {
 
   router.get("/", async (req, res) => {
     try {
-        const application = await JobApplicationModel.find({});
+        const application = await JoblistModel.find({});
         res.status(200).send(application);
     } catch (error) {
         res.status(500).send(error.message);
@@ -27,4 +25,4 @@ router.post("/", async (req, res) => {
 });
   
 
-module.exports = router;
+module.exports = route

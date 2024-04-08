@@ -21,10 +21,11 @@ app.use(express.json());
 
 const jobApplication = require('./routes/jobapplication');
 const registers = require('./routes/registerUser');
+const joblist = require('./routes/addjob');
 
-// Routes
 app.use('/application', jobApplication);
 app.use('/register', registers);
+app.use('/jobslist', joblist);
 
 
 

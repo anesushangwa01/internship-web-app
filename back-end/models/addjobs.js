@@ -15,6 +15,6 @@ const  Joblistschema = new mongoose.Schema({
 
 
 
-const JoblistModel = mongoose.model('jobapplications', Joblistschema);
+const JoblistModel = mongoose.model('joblist', Joblistschema);
 
 module.exports = JoblistModel;

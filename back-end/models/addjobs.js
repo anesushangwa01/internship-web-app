@@ -6,14 +6,31 @@ const  Joblistschema = new mongoose.Schema({
     type: String,
     required: true
   },
-  address: String,
-  joboverview:String,
-  skillsrequired: String,
-  jobwebsite: String,
-  // You can add more fields as needed
+  address:{ type :String,
+       required:true
+},
+joboverview:{ type :String,
+  required:true
+ },
+skillsrequired:{ type :String,
+  required:true
+},
+jobwebsite:{ type :String,
+  required:true
+},
+jobwebsite:{ type :String,
+  required:true
+},
+postdate:{
+  type: Date, 
+  required: true
+},
+expdate:{
+  type: Date, 
+  required: true
+}
+
 });
-
-
 
 const JoblistModel = mongoose.model('joblist', Joblistschema);
 

@@ -1,8 +1,12 @@
+// index.js
+
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const register = require('./models/register');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
+const verifyToken = require('./middleware/auth');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -27,29 +31,37 @@ app.use('/application', jobApplication);
 app.use('/register', registers);
 app.use('/jobslist', joblist);
 
-
-
-app.post("/login", async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
-      const { email, password } = req.body;
+    const { email, password } = req.body;
 
-      // Find the user by email
-      const user = await register.findOne({ email });
-      if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-      }
+    const user = await register.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
 
-      // Compare the provided password with the hashed password
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (!isPasswordValid) {
-          return res.status(401).json({ message: 'Invalid credentials' });
-      }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
 
-      // If the password is valid, return success message
-      res.status(200).json({ message: 'Login successful' });
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-  } catch (error) {
-      res.status(500).json({ message: error.message });
+    res.json({ token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.get('/profile', verifyToken, async (req, res) => {
+  try {
+    const user = await register.findById(req.user.userId);
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

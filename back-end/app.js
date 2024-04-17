@@ -1,5 +1,3 @@
-// index.js
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -7,11 +5,13 @@ const register = require('./models/register');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const verifyToken = require('./middleware/auth');
+const cors = require('cors'); // Import the cors middleware
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/app', {}) // Removed useNewUrlParser and useUnifiedTopology options
+
+mongoose.connect('mongodb://localhost:27017/app', {}) 
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -22,6 +22,9 @@ mongoose.connect('mongodb://localhost:27017/app', {}) // Removed useNewUrlParser
 
 // Express middleware
 app.use(express.json());
+
+// Use cors middleware to enable CORS
+app.use(cors());
 
 const jobApplication = require('./routes/jobapplication');
 const registers = require('./routes/registerUser');
@@ -57,7 +60,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/profile', verifyToken, async (req, res) => {
   try {
-    const user = await register.findById(req.user.userId);
+    const user = await register.findById(req.user._id);
     res.json(user);
   } catch (err) {
     console.error(err);

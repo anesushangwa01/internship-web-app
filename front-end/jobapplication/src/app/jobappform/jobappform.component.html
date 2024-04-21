@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class=" mx-auto back col-md-6 bg-dark text-white">
+    <h2>Submit Job Listing</h2>
+    <form (ngSubmit)="submitForm()" #jobForm="ngForm">
+      <div class="mb-3">
+        <label for="jobTitle" class="form-label">Job Title</label>
+  <select class="form-select" id="jobTitle" [(ngModel)]="jobData.jobtitle" name="jobTitle" required>
+    <option value="" disabled selected>Select a job title</option>
+    <option value="Software Engineer">Software Engineer</option>
+    <option value="Data Analyst">Data Analyst</option>
+    <option value="Marketing Manager">Marketing Manager</option>
+    <option value="Graphic Designer">Graphic Designer</option>
+    <option value="Project Manager">Project Manager</option>
+    <option value="Sales Representative">Sales Representative</option>
+    <option value="Human Resources Specialist">Human Resources Specialist</option>
+    <option value="Financial Analyst">Financial Analyst</option>
+    <option value="Customer Service Representative">Customer Service Representative</option>
+    <option value="Accountant">Accountant</option>
+    <option value="Web Developer">Web Developer</option>
+    <option value="Content Writer">Content Writer</option>
+    <option value="Product Manager">Product Manager</option>
+    <option value="Operations Manager">Operations Manager</option>
+    <option value="IT Support Specialist">IT Support Specialist</option>
+  </select>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" [(ngModel)]="jobData.address" name="address" required>
+      </div>
+      <div class="mb-3">
+        <label for="jobOverview" class="form-label">Job Overview</label>
+        <textarea class="form-control" id="jobOverview" [(ngModel)]="jobData.joboverview" name="jobOverview" rows="4" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="skillsRequired" class="form-label">Skills Required</label>
+        <textarea class="form-control" id="skillsRequired" [(ngModel)]="jobData.skillsrequired" name="skillsRequired" rows="4" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="jobWebsite" class="form-label">Job Website</label>
+        <input type="url" class="form-control" id="jobWebsite" [(ngModel)]="jobData.jobwebsite" name="jobWebsite" required>
+      </div>
+      <div class="mb-3">
+        <label for="postDate" class="form-label">Post Date</label>
+        <input type="datetime-local" class="form-control" id="postDate" [(ngModel)]="jobData.postdate" name="postDate" required>
+      </div>
+      <div class="mb-3">
+        <label for="expDate" class="form-label">Expiration Date</label>
+        <input type="datetime-local" class="form-control" id="expDate" [(ngModel)]="jobData.expdate" name="expDate" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!jobForm.valid">Submit</button>
+    </form>
+
+</div>
+  </div>
+  

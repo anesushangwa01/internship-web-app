@@ -26,6 +26,21 @@ export class JobappService {
         catchError(this.handleError)
       );
   }
+  applyJob(formData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/application`, formData)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
+  addJob(jobData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/jobslist`, jobData)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+ 
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

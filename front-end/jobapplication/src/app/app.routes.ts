@@ -10,5 +10,5 @@ export const routes: Routes = [
     { path: 'jobsdetails/:id', component: JobdetailsComponent  },
     { path: 'myapplication', component: MyapplicationComponent  },
     { path: 'admin', component: AdminComponent  },
-    {path :'add-job' ,component: JobappformComponent}
+    {path :'admin/add-job' ,component: JobappformComponent}
 ];

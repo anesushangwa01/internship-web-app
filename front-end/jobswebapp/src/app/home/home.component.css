@@ -1,0 +1,24 @@
+.banner{
+    background-image: url(../images/workspace-1280538_1920.jpg);
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-radius: 30px;
+    color: white;
+   
+}
+
+.card{
+  margin-top: 100px;
+}
+.heading{
+    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}

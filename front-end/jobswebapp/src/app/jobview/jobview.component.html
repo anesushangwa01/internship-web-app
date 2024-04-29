@@ -1,0 +1,17 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let job of jobs">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ job.jobtitle }}</h5>
+            <p class="card-text">{{ job.address }}</p>
+            <p class="card-text"><strong>Post Date:</strong> {{ job.postdate | date:'medium' }}</p>
+            <a [routerLink]="['/jobsdetails', job._id]" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
